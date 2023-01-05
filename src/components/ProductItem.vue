@@ -9,6 +9,42 @@
   </div>
 </template>
 
+<!-- <body>
+  <div id="app" v-cloak>
+    <div class="container">
+      <ul v-for="r in data.users" class="results">
+        <li>
+          <div
+            style="width:100%; display: flex; justify-content: center;">
+            <img :src="r.image" alt="r.lastName" style="width:200px;"></img>
+          </div>
+        </li>
+        <li><strong>Nom: </strong>{{ r.lastName }}</li>
+        <li><strong>Prénom: </strong>{{ r.firstName }}</li>
+        <li>
+          <strong>Date de naissance: </strong>{{ r.birthDate }} ({{ r.age }} ans)
+        </li>
+        <li><strong>Sexe: </strong>{{ r.gender }}</li>
+        <li style="overflow-wrap: break-word;"><strong>Mail: </strong>{{ r.email }}</li>
+        <li><strong>Tel: </strong>{{ r.phone }}</li>
+        <li><strong>Adresse: </strong>{{ r.address.address }}</li>
+        <li><strong>Code postal: </strong>{{ r.address.postalCode }}</li>
+        <li>
+          <strong>Ville: </strong>{{ r.address.city }} ({{ r.address.state }})
+        </li>
+        <li><strong>Localisation GPS: </strong>
+          <a
+            :href="urlGoogleMap(r.address.coordinates.lat, r.address.coordinates.lng)"
+            target="”_blank”"
+            rel="noreferrer noopener">
+            maps ↗
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body> -->
+
 <style scoped>
 .item {
   margin-top: 2rem;
@@ -18,15 +54,6 @@
 .details {
   flex: 1;
   margin-left: 1rem;
-}
-
-i {
-  display: flex;
-  place-items: center;
-  place-content: center;
-  width: 32px;
-  height: 32px;
-  color: var(--color-text);
 }
 
 h3 {
@@ -39,7 +66,6 @@ h3 {
 @media (min-width: 1024px) {
   .item {
     margin-top: 0;
-    padding: 0.4rem 0 1rem calc(var(--section-gap) / 2);
   }
 
   i {
