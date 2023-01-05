@@ -1,6 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-//import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
@@ -8,7 +7,7 @@ import { RouterLink, RouterView } from "vue-router";
     <div>
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/login">Se connecter</RouterLink>
         <RouterLink to="/products">Liste des produits</RouterLink>
       </nav>
     </div>
@@ -54,7 +53,6 @@ nav a:first-of-type {
 }
 
 @media (min-width: 1024px) {
-
   .logo {
     margin: 0 2rem 0 0;
   }
