@@ -3,7 +3,7 @@ import Products from "../components/Products.vue";
 </script>
 
 <template>
-  <h1>Liste des produits</h1>
+  <h3>Liste des produits</h3>
   <main>
     <Products />
   </main>
