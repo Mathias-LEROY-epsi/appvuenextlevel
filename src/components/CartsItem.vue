@@ -1,13 +1,24 @@
 <template>
-  <div class="item">
-    <li>{{ title }}</li>
-  </div>
+<div>
+    <div class = "item">
+      <h1 style="color: blue;">{{ cart.title }}</h1>
+    </div>
+    <div>
+      <h3 ><p>Prix à l'unité: {{ cart.price }}€</p>
+      <p>Quantity: {{ cart.quantity }}</p></h3>
+      <button @click="incrementQuantity"> + </button>
+      <button @click="decrementQuantity"> - </button>
+    </div>
+    <div>
+      <h2 style="color: red;" ><p>Total: {{ cart.total }} €</p></h2>
+    </div>
+</div>
 </template>
 
 <script>
 export default {
   props: {
-    title: String
+    cart:[],
   }
 }
 </script>

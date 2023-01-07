@@ -1,59 +1,44 @@
 <template>
-  <div class="cart">
-    <ul>
-      <li v-for="item in items" :key="item.id">
-        {{ item.name }} - {{ item.price }}
-        <button @click="remove(item.id)">Remove</button>
-      </li>
-    </ul>
-    <form @submit.prevent="addItem">
-      <label>
-        Name:
-        <input v-model="newItem.name" />
-      </label>
-      <br />
-      <label>
-        Price:
-        <input v-model="newItem.price" />
-      </label>
-      <br />
-      <button type="submit">Add</button>
-    </form>
-  </div>
+     <h1 style="color: greenyellow;">Votre panier:</h1>
+    <div v-if="carts">
+      <div v-for="products in carts.carts">
+        <div v-for="product in products.products">
+            <CartsItem :cart="product"></CartsItem>
+        </div>
+        <h1 style="color: greenyellow;">Total de votre panier est de : {{ products.total }}</h1>
+      </div>
+    </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import CartsItem from "@/components/CartsItem.vue";
+import axios from 'axios';
 
 export default {
   name: 'CartView',
+  components:{
+    CartsItem
+  },
   data() {
     return {
       items: [],
-      apiURL = 'https://dummyjson.com/carts/1';
-      newItem: {
-        name: '',
-        price: 0,
-      },
-      cartsItem: new CartsItem(),
+      carts: [],
+      apiURL: 'https://dummyjson.com/carts/user/5',
+
     };
   },
-  created() {
-    this.getCart();
-    this.getItems();
+  created: async function() {
+    await this.getCarts()
   },
   methods: {
-    async getCart(){
-      try {
-      const response = await axios.get();
-      this.items = response.data;
-    } catch (error) {
-      console.error(error);
-    }
-    },
-    async getItems() {
-      this.items = await this.cartsItem.get();
+    getCarts: async function(){
+      return await axios
+        .get(this.apiURL)
+        .then((res) => {
+          console.log(res.data)
+          this.carts = res.data
+        })
     },
     async addItem() {
       await this.cartsItem.add(this.newItem);
