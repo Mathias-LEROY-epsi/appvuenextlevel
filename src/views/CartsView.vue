@@ -1,28 +1,33 @@
 <template>
-  <h1 style="color: greenyellow">Votre panier:</h1>
-  <div v-if="carts">
-    <div v-for="products in carts.carts">
-      <div v-for="product in products.products">
-        <CartsItem :cart="product"></CartsItem>
-      </div>
-      <h1 style="color: greenyellow">
-        Total de votre panier est de : {{ products.total }}
-      </h1>
-    </div>
+  <div>
+    {{ isConnected }}
   </div>
 </template>
-
+<!-- <h1 style="color: greenyellow">Votre panier:</h1>
+<div v-if="carts">
+  <div v-for="products in carts.carts">
+    <div v-for="product in products.products">
+      <CartsItem :cart="product"></CartsItem>
+    </div>
+    <h1 style="color: greenyellow">
+      Total de votre panier est de : {{ products.total }}
+    </h1>
+  </div>
+</div> -->
 <script>
 // @ is an alias to /src
 import CartsItem from "@/components/CartsItem.vue";
+import {isConnected} from "@/views/LoginView.vue";
 import axios from "axios";
 
 export default {
   name: "CartView",
+  userId: "",
   components: {
     CartsItem,
   },
   data() {
+  isConnected: false;
     return {
       items: [],
       carts: [],
@@ -38,18 +43,6 @@ export default {
         console.log(res.data);
         this.carts = res.data;
       });
-    },
-    async addItem() {
-      await this.cartsItem.add(this.newItem);
-      this.newItem = {
-        name: "",
-        price: 0,
-      };
-      this.getItems();
-    },
-    async remove(itemId) {
-      await this.cartsItem.remove(itemId);
-      this.getItems();
     },
   },
 };
