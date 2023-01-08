@@ -11,16 +11,14 @@
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: var(--vt-c-red);
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    text-decoration: underline;
+    text-decoration-color: var(--vt-c-red);
+    text-underline-offset: 8px;
   }
 }
-
-/* @media (min-width: 1024px) {
-
-} */
